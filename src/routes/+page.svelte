@@ -1,55 +1,12 @@
 <script lang="ts">
-	interface Todo {
-		id: number;
-		title: string;
-		completed: boolean;
-	}
+	import { todos } from '$lib/store';
 
 	let todoTitle = '';
-
-	let todos: Todo[] = [
-		{
-			id: 1,
-			title: 'First',
-			completed: false
-		},
-		{
-			id: 2,
-			title: 'Second',
-			completed: false
-		}
-	];
-
-	const handleSubmit = () => {
-		console.log(event);
-		const newTodo: Todo = {
-			id: todos.length + 1,
-			title: todoTitle,
-			completed: false
-		};
-
-		todos = [...todos, newTodo];
-	};
-
-	// $: console.log(todos);
 </script>
 
 <div class="container">
 	<h1>Todos</h1>
-	<div class="todos">
-		{#each todos as todo (todo.id)}
-			<div class="card {todo.completed ? 'completed' : ''}">
-				<h2 class="title">{todo.title}</h2>
-				<label for={`${todo.id}`}>{todo.completed ? 'Uncheck' : 'Check'}</label>
-				<input type="checkbox" id={`${todo.id}`} bind:checked={todo.completed} />
-			</div>
-		{/each}
-	</div>
-	<form on:submit|preventDefault={handleSubmit}>
-		<label for="title">Todo title</label>
-		<input type="text" name="title" id="title" bind:value={todoTitle} required />
-		<button type="submit">Create</button>
-	</form>
+	<div class="todos"></div>
 </div>
 
 <style lang="scss">
