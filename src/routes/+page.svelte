@@ -1,12 +1,55 @@
 <script lang="ts">
 	import { todos } from '$lib/store';
+	import Form from '$lib/Form.svelte';
+	import Todo from '$lib/Todo.svelte';
 
-	let todoTitle = '';
+	const filter = ['All', 'Unfinished', 'Finished'] as const;
+	type Filter = (typeof filter)[number];
+
+	let state: Filter = 'All';
+
+	const handleFilter = (sorted: Filter) => {
+		switch (sorted) {
+			case 'All':
+				return $todos;
+			case 'Unfinished':
+				return $todos.filter((todo) => todo.completed === true);
+			case 'Finished':
+				return $todos.filter((todo) => todo.completed === false);
+		}
+	};
+
+	$: filtered = handleFilter(state);
+	$: notDone = $todos.filter((todo) => todo.completed === false).length;
+	$: done = $todos.filter((todo) => todo.completed === true).length;
+	$: console.log(state);
 </script>
 
 <div class="container">
 	<h1>Todos</h1>
-	<div class="todos"></div>
+	<div class="todos">
+		{#each filtered as todo}
+			<Todo {todo} />
+		{/each}
+	</div>
+
+	<div class="sorting">
+		<button on:click={() => (state = 'All')}>All</button>
+		<button on:click={() => (state = 'Unfinished')}>Unfinished</button>
+		<button on:click={() => (state = 'Finished')}>Finished</button>
+	</div>
+
+	<Form />
+
+	<div class="stats">
+		<div class="notDone">
+			Not done: {notDone}
+		</div>
+
+		<div class="done">
+			Not done: {done}
+		</div>
+	</div>
 </div>
 
 <style lang="scss">
@@ -20,29 +63,9 @@
 		flex-direction: column;
 		gap: 2rem;
 	}
-	.card {
-		border: 1px solid black;
+
+	.stats {
 		display: flex;
-		align-items: center;
-		padding: 1rem 2rem;
-
-		h2 {
-			font-size: 2em;
-			flex: 1;
-		}
-
-		label {
-			font-size: 1.5em;
-		}
-
-		input {
-			height: 20px;
-			aspect-ratio: 1;
-			margin-left: 0.5em;
-		}
-	}
-
-	.completed {
-		background-color: grey;
+		gap: 5rem;
 	}
 </style>

@@ -1,23 +1,4 @@
 import { writable } from 'svelte/store';
+import { initialState } from './initialState';
 
-export interface Todo {
-   id: number;
-   title: string;
-   completed: boolean;
-}
-
-const initialState: Todo[] = [
-   {
-      id: 1,
-      title: 'First',
-      completed: false
-   },
-   {
-      id: 2,
-      title: 'Second',
-      completed: false
-   }
-];
-
-export let todos: Todo[] = writable([])
-
+export let todos = writable<Todo[]>(initialState);
