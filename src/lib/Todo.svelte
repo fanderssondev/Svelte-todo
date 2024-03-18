@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { todos } from '$lib/store';
+	import { tick } from 'svelte';
 	export let todo: Todo;
 
 	const handleChecked = (checkedTodo: Todo) => {
 		$todos = $todos.map((todo) => {
 			if (todo.id === checkedTodo.id) {
-				return { ...todo, completed: !todo.completed };
+				return { ...checkedTodo, completed: !checkedTodo.completed };
 			}
 			return todo;
 		});
@@ -15,7 +16,12 @@
 <div class="card" class:completed={todo.completed}>
 	<h2 class="title">{todo.title}</h2>
 	<label for={`${todo.id}`}>{todo.completed ? 'Uncheck' : 'Check'}</label>
-	<input type="checkbox" id={`${todo.id}`} on:change={() => handleChecked(todo)} />
+	<input
+		type="checkbox"
+		bind:checked={todo.completed}
+		id={`${todo.id}`}
+		on:change={() => handleChecked(todo)}
+	/>
 </div>
 
 <style lang="scss">

@@ -16,6 +16,7 @@
 		$todos = [...$todos, newTodo];
 
 		titleInput = '';
+		console.log($todos);
 	};
 </script>
 

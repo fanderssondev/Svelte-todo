@@ -3,40 +3,39 @@
 	import Form from '$lib/Form.svelte';
 	import Todo from '$lib/Todo.svelte';
 
-	const filter = ['All', 'Unfinished', 'Finished'] as const;
-	type Filter = (typeof filter)[number];
+	type Filter = 'all' | 'unfinished' | 'finished';
 
-	let state: Filter = 'All';
+	let state: Filter = 'all';
 
 	const handleFilter = (sorted: Filter) => {
 		switch (sorted) {
-			case 'All':
+			case 'all':
 				return $todos;
-			case 'Unfinished':
-				return $todos.filter((todo) => todo.completed === true);
-			case 'Finished':
+			case 'unfinished':
 				return $todos.filter((todo) => todo.completed === false);
+			case 'finished':
+				return $todos.filter((todo) => todo.completed === true);
 		}
 	};
 
 	$: filtered = handleFilter(state);
 	$: notDone = $todos.filter((todo) => todo.completed === false).length;
 	$: done = $todos.filter((todo) => todo.completed === true).length;
-	$: console.log(state);
+	$: console.log(`state: ${state}, `, `filtered:`, filtered);
 </script>
 
 <div class="container">
 	<h1>Todos</h1>
 	<div class="todos">
-		{#each filtered as todo}
+		{#each $todos as todo}
 			<Todo {todo} />
 		{/each}
 	</div>
 
 	<div class="sorting">
-		<button on:click={() => (state = 'All')}>All</button>
-		<button on:click={() => (state = 'Unfinished')}>Unfinished</button>
-		<button on:click={() => (state = 'Finished')}>Finished</button>
+		<button on:click={() => (state = 'all')}>All</button>
+		<button on:click={() => (state = 'unfinished')}>Unfinished</button>
+		<button on:click={() => (state = 'finished')}>Finished</button>
 	</div>
 
 	<Form />
