@@ -8,9 +8,9 @@ declare global {
       // interface PageState {}
       // interface Platform {}
    }
-   export interface Todo {
-      id: number;
-      title: string;
+   interface Todo {
+      id: string;
+      text: string;
       completed: boolean;
    }
 }
