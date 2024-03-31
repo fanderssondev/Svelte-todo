@@ -8,7 +8,7 @@ declare global {
       // interface PageState {}
       // interface Platform {}
    }
-   interface Todo {
+   interface TodoType {
       id: string;
       text: string;
       completed: boolean;

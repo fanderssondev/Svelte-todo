@@ -1,11 +1,7 @@
 <script lang="ts">
-	type AddTodoType = (text: string) => void;
-	type ToggleCompletedType = (event: MouseEvent) => void;
-	type TodosAmountType = number;
-
-	export let addTodo: AddTodoType;
-	export let toggleCompleted: ToggleCompletedType;
-	export let todosAmount: TodosAmountType;
+	export let addTodo: (text: string) => void;
+	export let toggleCompleted: (event: MouseEvent) => void;
+	export let todosAmount: number;
 
 	// State
 	let todoText = '';
@@ -30,6 +26,7 @@
 		placeholder="What needs to be done?"
 		type="text"
 		autofocus
+		required
 	/>
 </form>
 

@@ -1,15 +1,15 @@
 // TODO: Add todo
-// []: Input should be focused when paged loads
-// []: Only show add todo if there are no other todos
-// []: After adding todo, clear and focus input
-// []: Only show mark todos as completed if there are todos
-// []: Use enter to add todo
-// []: Mark todo as completed
-// []: Mark all todos as completed
-// []: Mark all todos as uncompleted
+// [X]: Input should be focused when paged loads
+// [X]: Only show add todo if there are no other todos
+// [X]: After adding todo, clear and focus input
+// [X]: Only show mark todos as completed if there are todos
+// [X]: Use enter to add todo
+// [X]: Mark todo as completed
+// [X]: Mark all todos as completed
+// [X]: Mark all todos as uncompleted
 
 // TODO: Remove todo
-// []: Hovering over a todo shows the option to remove it
+// [X]: Hovering over a todo shows the option to remove it
 
 // TODO: Edit todo
 // []: Using Escape and Enter saves the edit
@@ -25,3 +25,7 @@
 // []: Show only when there is at least one completed todo
 
 // TODO: Add persistent storage
+
+
+
+// NOTE: Editing Todo Items
