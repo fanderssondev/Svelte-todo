@@ -1,12 +1,25 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import AddTodo from '$lib/AddTodo.svelte';
 	import ClearTodos from '$lib/ClearTodos.svelte';
 	import FilterTodos from '$lib/FilterTodos.svelte';
 	import Todo from '$lib/Todo.svelte';
 	import TodosLeft from '$lib/TodosLeft.svelte';
 	import { initialState } from '$lib/initialState';
+	import { json } from '@sveltejs/kit';
+	import { onMount } from 'svelte';
 
-	let todos: TodoType[] = initialState;
+	// let storedTodos = window.localStorage.getItem('todos');
+	// let todos: TodoType[] = storedTodos ? JSON.parse(storedTodos) : [];
+	let todos: TodoType[] = [];
+
+	if (browser) {
+		todos = JSON.parse(localStorage.getItem('todos') ?? '[]');
+	}
+
+	$: if (browser) {
+		localStorage.setItem('todos', JSON.stringify(todos));
+	}
 
 	let selectedFilter: FilterType = 'all';
 
