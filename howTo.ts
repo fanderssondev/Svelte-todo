@@ -12,14 +12,14 @@
 // [X]: Hovering over a todo shows the option to remove it
 
 // TODO: Edit todo
-// []: Using Escape and Enter saves the edit
-// []: When focus leaves input save todo
-// []: Show how many todos are left
-// []: Use item when there’s a single todo and items for many
+// [X]: Using Escape and Enter saves the edit
+// [X]: When focus leaves input save todo
+// [X]: Show how many todos are left
+// [X]: Use item when there’s a single todo and items for many
 
 // TODO: Filter todos
-// []: All, Active, Completed
-// []: Highlight selected filter
+// [X]: All, Active, Completed
+// [X]: Highlight selected filter
 
 // TODO: Clear completed todos
 // []: Show only when there is at least one completed todo

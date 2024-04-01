@@ -13,6 +13,7 @@ declare global {
       text: string;
       completed: boolean;
    }
+   type FilterType = 'all' | 'active' | 'completed';
 }
 
 export {};

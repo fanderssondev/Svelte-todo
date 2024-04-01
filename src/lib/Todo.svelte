@@ -2,9 +2,41 @@
 	export let todo: TodoType;
 	export let completeTodo: (id: string) => void;
 	export let removeTodo: (id: string) => void;
+	export let editTodo: (id: string, newText: string) => void;
+
+	let editing = false;
+
+	const toggleEdit = (): void => {
+		editing = true;
+	};
+
+	const handleEdit = (event: KeyboardEvent, id: string): void => {
+		const pressedKey = event.key;
+		const targetElement = event.target as HTMLInputElement;
+		const newText = targetElement.value;
+
+		switch (pressedKey) {
+			case 'Escape':
+				targetElement.blur();
+				break;
+			case 'Enter':
+				editTodo(id, newText);
+				targetElement.blur();
+				break;
+		}
+	};
+
+	const handleBlur = (event: FocusEvent, id: string) => {
+		const targetElement = event.target as HTMLInputElement;
+		const newText = targetElement.value;
+
+		editTodo(id, newText);
+		targetElement.blur();
+		editing = false;
+	};
 </script>
 
-<li class="todo">
+<li class:editing class="todo">
 	<div class="todo-item">
 		<div>
 			<input
@@ -16,9 +48,25 @@
 			/>
 			<label aria-label="Check todo" class="todo-check" for="todo" />
 		</div>
-		<span class:completed={todo.completed} class="todo-text">{todo.text}</span>
+
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<span on:dblclick={toggleEdit} class:completed={todo.completed} class="todo-text"
+			>{todo.text}</span
+		>
 		<button on:click={() => removeTodo(todo.id)} aria-label="Remove todo" class="remove" />
 	</div>
+
+	<!-- svelte-ignore a11y-autofocus -->
+	{#if editing}
+		<input
+			on:keydown={(event) => handleEdit(event, todo.id)}
+			on:blur={(event) => handleBlur(event, todo.id)}
+			class="edit"
+			type="text"
+			value={todo.text}
+			autofocus
+		/>
+	{/if}
 
 	<!-- <input class="edit" type="text" autofocus /> -->
 </li>
