@@ -22,9 +22,14 @@
 // [X]: Highlight selected filter
 
 // TODO: Clear completed todos
-// []: Show only when there is at least one completed todo
+// [X]: Show only when there is at least one completed todo
 
 // TODO: Add persistent storage
+// [X]: Save to localstorage
+// [X]: Load localstorage
+
+// TODO: Store
+// [] Create store to handle todo state
 
 
 
