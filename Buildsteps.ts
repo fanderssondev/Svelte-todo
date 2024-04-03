@@ -31,6 +31,5 @@
 // TODO: Store
 // [X]: Create store to handle todo state
 
-
-
-// NOTE: Adding Persistent Storage
+// TODO: Refactor Store
+// []: Break out state functions to custom store

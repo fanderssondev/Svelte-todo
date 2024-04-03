@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { fade, slide } from 'svelte/transition';
+
 	export let todo: TodoType;
 	export let completeTodo: (id: string) => void;
 	export let removeTodo: (id: string) => void;
 	export let editTodo: (id: string, newText: string) => void;
+	export let duration: number;
 
 	let editing = false;
 
@@ -36,7 +39,7 @@
 	};
 </script>
 
-<li class:editing class="todo">
+<li in:slide={{ duration }} out:fade={{ duration }} class:editing class="todo">
 	<div class="todo-item">
 		<div>
 			<input

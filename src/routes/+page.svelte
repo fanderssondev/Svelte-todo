@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import { tick } from 'svelte';
+
 	import AddTodo from '$lib/AddTodo.svelte';
 	import ClearTodos from '$lib/ClearTodos.svelte';
 	import FilterTodos from '$lib/FilterTodos.svelte';
@@ -10,12 +11,13 @@
 	let todos = useStorage<TodoType[]>('todos', []);
 
 	let selectedFilter: FilterType = 'all';
+	let filtering = false;
 
-	// Computed
 	$: todosAmount = $todos.length;
 	$: incompleteTodos = $todos.filter((todo) => !todo.completed).length;
 	$: filteredTodos = filterTodos($todos, selectedFilter);
 	$: completedTodos = $todos.filter((todo) => todo.completed).length;
+	$: duration = filtering ? 0 : 250;
 
 	const generateRandomId = (): string => {
 		return Math.random().toString(16).slice(2);
@@ -58,8 +60,12 @@
 		$todos[index].text = newText;
 	};
 
-	const setFilter = (filter: FilterType): void => {
+	const setFilter = async (filter: FilterType): Promise<void> => {
+		filtering = true;
+		await tick();
 		selectedFilter = filter;
+		filtering = false;
+		await tick();
 	};
 
 	const filterTodos = (todos: TodoType[], filter: FilterType): TodoType[] => {
@@ -84,7 +90,7 @@
 	{#if todosAmount}
 		<ul class="todo-list">
 			{#each filteredTodos as todo (todo.id)}
-				<Todo {todo} {completeTodo} {removeTodo} {editTodo} />
+				<Todo {todo} {completeTodo} {removeTodo} {editTodo} {duration} />
 			{/each}
 		</ul>
 
