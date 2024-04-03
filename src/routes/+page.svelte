@@ -24,7 +24,7 @@
 	};
 
 	const addTodo = (text: string): void => {
-		let newTodo: TodoType = {
+		const newTodo: TodoType = {
 			id: generateRandomId(),
 			text,
 			completed: false
@@ -34,7 +34,7 @@
 	};
 
 	const toggleCompleted = (event: MouseEvent): void => {
-		let { checked } = event.target as HTMLInputElement;
+		const { checked } = event.target as HTMLInputElement;
 
 		$todos = $todos.map((todo) => ({
 			...todo,
