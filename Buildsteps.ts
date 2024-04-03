@@ -29,7 +29,7 @@
 // [X]: Load localstorage
 
 // TODO: Store
-// [] Create store to handle todo state
+// [X]: Create store to handle todo state
 
 
 

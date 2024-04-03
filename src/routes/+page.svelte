@@ -5,24 +5,17 @@
 	import FilterTodos from '$lib/FilterTodos.svelte';
 	import Todo from '$lib/Todo.svelte';
 	import TodosLeft from '$lib/TodosLeft.svelte';
+	import { useStorage } from '$lib/stores/useStorage';
 
-	let todos: TodoType[] = [];
-
-	if (browser) {
-		todos = JSON.parse(localStorage.getItem('todos') ?? '[]');
-	}
-
-	$: if (browser) {
-		localStorage.setItem('todos', JSON.stringify(todos));
-	}
+	let todos = useStorage<TodoType[]>('todos', []);
 
 	let selectedFilter: FilterType = 'all';
 
 	// Computed
-	$: todosAmount = todos.length;
-	$: incompleteTodos = todos.filter((todo) => !todo.completed).length;
-	$: filteredTodos = filterTodos(todos, selectedFilter);
-	$: completedTodos = todos.filter((todo) => todo.completed).length;
+	$: todosAmount = $todos.length;
+	$: incompleteTodos = $todos.filter((todo) => !todo.completed).length;
+	$: filteredTodos = filterTodos($todos, selectedFilter);
+	$: completedTodos = $todos.filter((todo) => todo.completed).length;
 
 	const generateRandomId = (): string => {
 		return Math.random().toString(16).slice(2);
@@ -35,20 +28,20 @@
 			completed: false
 		};
 
-		todos = [...todos, newTodo];
+		$todos = [...$todos, newTodo];
 	};
 
 	const toggleCompleted = (event: MouseEvent): void => {
 		let { checked } = event.target as HTMLInputElement;
 
-		todos = todos.map((todo) => ({
+		$todos = $todos.map((todo) => ({
 			...todo,
 			completed: checked
 		}));
 	};
 
 	const completeTodo = (id: string): void => {
-		todos = todos.map((todo) => {
+		$todos = $todos.map((todo) => {
 			if (todo.id === id) {
 				return { ...todo, completed: !todo.completed };
 			}
@@ -57,12 +50,12 @@
 	};
 
 	const removeTodo = (id: string): void => {
-		todos = todos.filter((todo) => todo.id !== id);
+		$todos = $todos.filter((todo) => todo.id !== id);
 	};
 
 	const editTodo = (id: string, newText: string): void => {
-		const index = todos.findIndex((todo) => todo.id === id);
-		todos[index].text = newText;
+		const index = $todos.findIndex((todo) => todo.id === id);
+		$todos[index].text = newText;
 	};
 
 	const setFilter = (filter: FilterType): void => {
@@ -81,7 +74,7 @@
 	};
 
 	const clearCompleted = (): void => {
-		todos = todos.filter((todo) => todo.completed === false);
+		$todos = $todos.filter((todo) => todo.completed === false);
 	};
 </script>
 

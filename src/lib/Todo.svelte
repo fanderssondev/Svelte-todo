@@ -90,6 +90,10 @@
 		transition: color 0.4s;
 	}
 
+	.todo-text {
+		flex: 1;
+	}
+
 	.todo-check {
 		border-radius: 100%;
 	}
@@ -139,7 +143,7 @@
 
 	.remove {
 		display: none;
-		margin-left: auto;
+		/* margin-left: auto; */
 		font-size: var(--font-32);
 		color: var(--color-gray-58);
 		transition: color 0.2s ease-out;
