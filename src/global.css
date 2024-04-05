@@ -12,7 +12,10 @@
    --sans-serif: 'Inter', sans-serif;
 
    --color-bg: hsl(220, 20%, 14%);
+   --color-bg-2: hsl(220, 20%, 24%);
+   --color-bg-3: hsl(220, 20%, 34%);
    --color-text: hsl(0, 0%, 2%);
+   --color-text-2: hsl(0, 0%, 90%);
    --color-title: hsl(357, 49%, 48%);
    --color-highlight: hsl(0, 33%, 64%);
    --color-gray-28: hsl(0, 0%, 28%);
@@ -33,13 +36,18 @@
 }
 
 html,
-body {
+body,
+main {
    height: 100%;
 }
 
-body {
-   display: grid;
-   place-content: center;
+main {
+   /* display: grid;
+   place-content: center; */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-top: 5rem;
    font-family: var(--sans-serif);
    font-weight: 300;
    line-height: 1.4;

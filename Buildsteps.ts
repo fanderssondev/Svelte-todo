@@ -31,5 +31,5 @@
 // TODO: Store
 // [X]: Create store to handle todo state
 
-// TODO: Refactor Store
-// []: Break out state functions to custom store
+// TODO: Dark mode
+// []: Create Dark mode
