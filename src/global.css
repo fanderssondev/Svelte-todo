@@ -9,18 +9,9 @@
 }
 
 :root {
-   --sans-serif: 'Inter', sans-serif;
+   color-scheme: dark;
 
-   --color-bg: hsl(220, 20%, 14%);
-   --color-bg-2: hsl(220, 20%, 24%);
-   --color-bg-3: hsl(220, 20%, 34%);
-   --color-text: hsl(0, 0%, 2%);
-   --color-text-2: hsl(0, 0%, 90%);
-   --color-title: hsl(357, 49%, 48%);
-   --color-highlight: hsl(0, 33%, 64%);
-   --color-gray-28: hsl(0, 0%, 28%);
-   --color-gray-58: hsl(0, 0%, 58%);
-   --color-gray-90: hsl(0, 0%, 90%);
+   --sans-serif: 'Inter', sans-serif;
 
    --font-24: 1.5rem;
    --font-32: 2rem;
@@ -33,6 +24,70 @@
    --shadow-1: hsl(0, 0%, 0%, 0.1);
 
    --radius-base: 4px;
+}
+
+@media (prefers-color-scheme: light) {
+   :root {
+      color-scheme: light;
+
+      --color-bg: hsl(220, 20%, 64%);
+      --color-bg-2: hsl(220, 20%, 74%);
+      --color-bg-3: hsl(220, 20%, 84%);
+      --color-text: hsl(0, 0%, 2%);
+      --color-text-2: hsl(0, 0%, 90%);
+      --color-title: hsl(357, 49%, 48%);
+      --color-highlight: hsl(0, 33%, 64%);
+      --color-gray-28: hsl(0, 0%, 28%);
+      --color-gray-58: hsl(0, 0%, 58%);
+      --color-gray-90: hsl(0, 0%, 90%);
+   }
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      color-scheme: dark;
+
+      --color-bg: hsl(220, 20%, 14%);
+      --color-bg-2: hsl(220, 20%, 24%);
+      --color-bg-3: hsl(220, 20%, 34%);
+      --color-text: hsl(0, 0%, 2%);
+      --color-text-2: hsl(0, 0%, 90%);
+      --color-title: hsl(357, 49%, 48%);
+      --color-highlight: hsl(0, 33%, 64%);
+      --color-gray-28: hsl(0, 0%, 28%);
+      --color-gray-58: hsl(0, 0%, 58%);
+      --color-gray-90: hsl(0, 0%, 90%);
+   }
+}
+
+[data-theme="light"] {
+   color-scheme: light;
+
+   --color-bg: hsl(220, 20%, 64%);
+   --color-bg-2: hsl(220, 20%, 74%);
+   --color-bg-3: hsl(220, 20%, 84%);
+   --color-text: hsl(0, 0%, 2%);
+   --color-text-2: hsl(0, 0%, 90%);
+   --color-title: hsl(357, 49%, 48%);
+   --color-highlight: hsl(0, 33%, 64%);
+   --color-gray-28: hsl(0, 0%, 28%);
+   --color-gray-58: hsl(0, 0%, 58%);
+   --color-gray-90: hsl(0, 0%, 90%);
+}
+
+[data-theme="dark"] {
+   color-scheme: dark;
+
+   --color-bg: hsl(220, 20%, 14%);
+   --color-bg-2: hsl(220, 20%, 24%);
+   --color-bg-3: hsl(220, 20%, 34%);
+   --color-text: hsl(0, 0%, 2%);
+   --color-text-2: hsl(0, 0%, 90%);
+   --color-title: hsl(357, 49%, 48%);
+   --color-highlight: hsl(0, 33%, 64%);
+   --color-gray-28: hsl(0, 0%, 28%);
+   --color-gray-58: hsl(0, 0%, 58%);
+   --color-gray-90: hsl(0, 0%, 90%);
 }
 
 html,

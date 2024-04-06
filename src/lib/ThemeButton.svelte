@@ -1,9 +1,13 @@
 <script lang="ts">
-	let darkMode = false;
+	import { darkMode } from './stores/ThemeStore';
+
+	const handleDarkModeToggle = () => {
+		$darkMode = !$darkMode;
+	};
 </script>
 
-<button
-	>{#if darkMode}
+<button on:click={handleDarkModeToggle}
+	>{#if $darkMode}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"

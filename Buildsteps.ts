@@ -32,4 +32,5 @@
 // [X]: Create store to handle todo state
 
 // TODO: Dark mode
-// []: Create Dark mode
+// [X]: Create Dark mode
+// []: Check if prefers light/dark mode

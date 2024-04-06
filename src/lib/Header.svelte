@@ -23,22 +23,4 @@
 		margin: 0 auto;
 		min-height: 3rem;
 	}
-
-	button {
-		display: grid;
-		align-items: center;
-		background-color: var(--color-bg-3);
-		/* font-size: 3rem; */
-		padding: 0.4rem;
-		border-radius: 50%;
-	}
-
-	svg {
-		--size: 2rem;
-
-		color: var(--color-text-2);
-		width: var(--size);
-		aspect-ratio: 1;
-		/* height: 50px; */
-	}
 </style>
